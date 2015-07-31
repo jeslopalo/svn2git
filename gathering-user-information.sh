@@ -38,15 +38,9 @@ echo -e "${yellow}Changing directory to `pwd`/repo ${NC}..."
 cd repo
 
 echo -e "${yellow}Extracting commit authors${NC}..."
-svn log -q | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" <"$2">"}' | sort -u > authors-transform.txt
+svn log -q | awk -F '|' '/^r/ {sub("^ ", "", $2); sub(" $", "", $2); print $2" = "$2" <"$2">"}' | sort -u > ../authors.txt
 
-#echo -e "\nCreando el directorio ${green} $repository_name ${NC}..."
-#mkdir -p $repository_name
+echo -e "${yellow}Changing to initial directory...${NC}"
+cd - &>/dev/null
 
-#cd $repository_name
-#git init --bare --shared
-
-#echo -e "\n¡El repositorio ${green}$repository_name${NC} ha sido creado e iniciado!"
-#echo -e "Para empezar a trabajar puedes clonar en tu máquina con: ${green}git clone ssh://[username]@desa-arce.corpme.es/home/usuario/git/$repository_name${NC}\n"
-
-#echo "Gathering user information from [$1] svn repository..."
+echo -e "\nThere is a new file ${green}`pwd`/authors.txt${NC} with committers' data!"
