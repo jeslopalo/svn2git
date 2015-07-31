@@ -38,8 +38,9 @@ For each tag displayed you will want to run:
 
 ### Deleting trunk branch
 If you don't want to get svn trunk as a Git branch, you will want to run:
-	
-	
+```	
+	git branch -r -d origin/trunk
+```	
 
 ## Pushing to Origin
 Congratulations! You have created a Git repository with all the history, and authors set correctly. Now, we are on to the last step. You will want to push the Repository up to Origin so it is available to other users in the account. If you haven't already created an empty Git repository in your account, do that now. Then follow these commands:
