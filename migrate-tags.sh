@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 for tag in `git branch -r | grep tags `; do 
 	echo "Processing tag branch:	$tag ...";
 	tagname=`echo $tag | sed 's/.*\///'`;

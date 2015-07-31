@@ -8,9 +8,7 @@ yellow='\033[0;33m'
 NC='\033[0m' # No Color
 
 
-
 echo -e "\n\nWe are going to push to origin!"
-
 
 
 confirmation="N"
