@@ -32,8 +32,11 @@ while [ "$confirmation" != "Y" ] && [ "$confirmation" != "y" ]; do
         echo -e "What is the authors/commiters translation file? [default none]: "
         read -e authors_file
 
-        if [ "$authors_file" == "" ] || ![ -f "$authors_file" ] ]; then
+        if [[ "$authors_file" == "" ]]; then
             echo -e "Are you sure that you dont want to provide a commiters translation file? [Yy]: "
+        elif [[ ! -f "$authors_file" ]]; then
+            echo -e "${red}$authors_file doesn't exists.${NC} Do you want to ignore the commiters translation file? [Yy]: "
+            authors_file=""
         else
             echo -e "It is ${green}$authors_file${NC} correct? [Yy]: "
         fi
