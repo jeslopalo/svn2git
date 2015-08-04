@@ -26,7 +26,6 @@ if [ "$svn_url" == "" ]; then
         exit
 fi
 
-#echo -e "${yellow} ${NC}..."
 echo -e "${yellow}Checking out from svn repository $svn_url in repo directory${NC}..."
 if [ -d "repo" ]; then
         echo -e "${red}GAME OVER!${NC} Sorry, a ${green}repo${NC} directory already exists, please delete it and start agein."
