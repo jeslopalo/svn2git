@@ -1,7 +1,7 @@
 #!/bin/sh
 
 usage() {
-    echo "./extract-users.sh svn_url [output file]"
+    echo "usage: ./extract-users.sh svn_url [output file]"
 }
 
 if [ $# -lt 1 ]; then
