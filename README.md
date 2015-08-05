@@ -14,7 +14,7 @@ Shell scripts to migrate SVN repositories to Git
 ```
 This will create authors-transform.txt with all the committers from the SVN repository specified by REPOPATH with dummy Git committer information, such as:
 
-```
+```shell
 	svn_committer = svn_committer <USER@DOMAIN.COM>
 ```
 Once this is done, you can edit the file, and enter in each users actual name and email address on the right side of the equals sign. This will be the Git author information used during the migration.
@@ -22,32 +22,32 @@ Once this is done, you can edit the file, and enter in each users actual name an
 ### Cloning the SVN Repository
 
 Once your user mapping is completed, you can now clone the SVN repository directly using git svn clone.
-```
+```shell
 	git svn clone [subversion_repository_url] --stdlayout --no-metadata -A authors.txt ./repo
 ```
 
 ### Cleaning Up
 
 If you had tags in the SVN repository, these are now remote branches for each tag. To display these you will want to run:
-```
+```shell
 	cd /path/to/repo
 	git branch -r
 ```	
 For each tag displayed you will want to run:
-```
+```shell
 	git tag tagname tags/tagname
 	git branch -r -d tags/tagname
 ```
 
 #### Deleting trunk branch
 If you don't want to get svn trunk as a Git branch, you will want to run:
-```	
+```shell
 	git branch -r -d origin/trunk
 ```	
 
 ### Pushing to Origin
 Congratulations! You have created a Git repository with all the history, and authors set correctly. Now, we are on to the last step. You will want to push the Repository up to Origin so it is available to other users in the account. If you haven't already created an empty Git repository in your account, do that now. Then follow these commands:
-```
+```shell
 	cd /path/to/repo
 	git remote add origin https://subdomain.unfuddle.com/git/subdomain_abbreviation/
 	git push origin master
