@@ -25,7 +25,7 @@ if [ -d "temporal-svn-repo" ]; then
 fi
 
 echo -e "Extrayendo los usuarios del repositorio svn $svn_url en el fichero $output_file ..."
-svn co $svn_url temporal-svn-repo &>/dev/null
+svn co $svn_url temporal-svn-repo 1>/dev/null
 
 #Changing directory to temporal-svn-repo
 cd temporal-svn-repo
