@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 usage() {
     echo "usage: ./extract-users-from-repositories.sh svn_host repositories_path svn_url_prefix [output file]"

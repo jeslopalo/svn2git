@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -27,7 +27,7 @@ check_git_repository() {
 
 migrate_tags() {
 
-    for tag in `git branch -r | grep \/tags\/ `; do
+    for tag in `git branch -r | grep tags `; do
         tagname=`echo $tag | sed 's/.*\///'`;
         echo -e "Creando un Tag a partir del branch:\t$tag,\ttagname: $tagname...";
         echo -e "${YELLOW}"
@@ -37,9 +37,13 @@ migrate_tags() {
     done
 
     # Deleting trunk branch reference
-    echo -e "${YELLOW}"
-    git branch -r -d origin/trunk
-    echo -e "${NC}"
+    for branch in `git branch -r | grep trunk `; do
+	echo -e "Eliminando la rama $branch...";
+    	echo -e "${YELLOW}"
+    	git branch -r -d $branch
+    	#git branch -r -d trunk
+    	echo -e "${NC}"
+    done
 
     echo -e "\nBranches:"
     git branch -a
@@ -67,8 +71,9 @@ pushing_to_origin() {
 
     echo -e "Pushing branches al remote origin..."
     echo -e "${YELLOW}"
-    for remote in `git branch -r | grep -v master `; do
-	    git checkout --track $remote ;
+    for remote in `git branch -a | grep -v master `; do
+	echo -e "Checkouting branch: $remote"
+	git checkout --track $remote;
     done
     git push --all
     echo -e "${NC}"
@@ -129,10 +134,10 @@ migrate_tags
 # Pushing to origin
 pushing_to_origin
 
-#Changing to initial directory
+# Changing to initial directory
 cd - &>/dev/null
 
-#Deleting working directory
+# Deleting working directory
 rm -rf $WORKING_DIRECTORY
 
 echo -e "\nSe ha migrado el repositorio SVN ($svn_url) a Git ($git_url)!"

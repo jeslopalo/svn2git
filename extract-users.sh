@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 usage() {
     echo "usage: ./extract-users.sh svn_url [output file]"
