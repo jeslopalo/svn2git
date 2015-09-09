@@ -6,9 +6,13 @@ username=$([ $# -gt 0 ] && echo "$1" || echo "<user>")
 GIT_REPOSITORY="ssh://$username@desaweb.corpme.es/git"
 
 list_git_repos() {
-  local directory=$1
+  local directory="$1"
 
   if [ -f "$directory" ]; then
+    return 0
+  fi
+
+  if [ "$directory" = "_migration_working_directory_" ]; then
     return 0
   fi
 
@@ -16,7 +20,7 @@ list_git_repos() {
       echo -e "> $GIT_REPOSITORY/$directory"
       return 0
   else
-      for child in `ls -1A $directory`; do
+      for child in `ls -1A ${directory}`; do
         child_directory=$([ "$directory" != "" ] && echo "$directory/$child" || echo "$child")
         list_git_repos "$child_directory"
       done
@@ -30,3 +34,4 @@ fi
 cwd=`pwd`
 echo -e "\nListando los repositorios Git en $cwd..."
 list_git_repos
+
