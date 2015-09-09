@@ -72,8 +72,8 @@ pushing_to_origin() {
     echo -e "Pushing branches al remote origin..."
     echo -e "${YELLOW}"
     for remote in `git branch -a | grep -v master `; do
-	echo -e "Checkouting branch: $remote"
-	git checkout --track $remote;
+	    echo -e "Checkouting branch: $remote"
+	    git checkout --track $remote;
     done
     git push --all
     echo -e "${NC}"
